@@ -1,7 +1,6 @@
-
-
 <script lang="ts">
   import CETEI from 'CETEIcean';
+  import Header from './lib/Header.svelte';
 
   const tei = new CETEI();
   const urls = {
@@ -13,7 +12,7 @@
  
   let editionElement;
 
-  function onClick(mode: 'sturm' | 'faustus') {
+  function getEdition(mode: 'sturm' | 'faustus') {
     tei.getHTML5(urls[mode], (data) => {
       editionElement.innerHTML = '';
       editionElement.appendChild(data);
@@ -22,9 +21,13 @@
 </script>
 
 <main>
-  <button on:click={() => onClick('sturm')}>Der Sturm</button>
-  <button on:click={() => onClick('faustus')}>Faustus</button>
+  <Header on:editionSelected={(event) => getEdition(event.detail)} />
 
-  <div bind:this={editionElement}></div>
+  <div class="app-content" bind:this={editionElement}></div>
 </main>
 
+<style>
+  .app-content {
+    padding: 2rem;
+  }
+</style>
