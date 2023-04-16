@@ -1,0 +1,13 @@
+tei-tei {
+  tei-facsimile {
+    float: right;
+    display: block;
+    width: 500px;
+    max-height: 800px;
+    overflow-y: auto;
+
+    tei-graphic img {
+      width: 100%;
+    }
+  }
+}
